@@ -15,4 +15,7 @@ ReadPkg( "carat", "gap/carat.gi" );    # low level Carat interface routines
 ReadPkg( "carat", "gap/util.gi" );     # utility routines from CrystGap
 ReadPkg( "carat", "gap/methods.gi" );  # methods for functions declared
                                        # in GAP library   
+if VERSION{[1..3]} = "4b5" then
+  ReadPkg( "carat", "gap/fix4b5.gi" ); # methods that were missing in 4b5 
+fi;
 
