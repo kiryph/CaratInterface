@@ -1,0 +1,57 @@
+
+This share package contains GAP 4 interface routines to Carat, 
+a package of programs for the computation with crystallographic
+groups. Carat is implemented in C, and has been developed at Lehrstuhl
+B f"ur Mathematik, RWTH Aachen. Carat itself is NOT part of this share
+package. Carat can be obtained at
+
+    http://samuel.math.rwth-aachen.de/~LBFM/carat/
+ 
+The GAP interface routines to Carat have been written by
+
+    Franz G"ahler
+    Institut f"ur Theoretische und Angewandte Physik 
+    Universit"at Stuttgart, Pfaffenwaldring 57
+    D-70550 Stuttgart
+
+    gaehler@itap.physik.uni-stuttgart.de
+
+to whom bug reports regarding these interface routines should be
+addressed. Bug reports regarding Carat itself should be sent to
+
+    carat@momo.math.rwth-aachen.de.
+
+The interface routines in this package fall into two parts: low level
+interface routines which deal with the data files of Carat programs,
+and implementations (using Carat) of methods for higher level
+functions declared in the GAP library. 
+
+This package must be installed in one of the GAP 4 root directories.
+It is loaded with
+
+    RequirePackage( "carat" );
+
+For each type of hardware (see the GAP 4 bin directory), the 
+pkg/carat/bin directory must contain a link to the corresponding 
+directory with the Carat binaries, or a directory containing the
+Carat binaries.
+
+Files:
+
+    gap/carat.gd:     declarations of low level Carat interface routines
+    gap/carat.gi:     implementations of low level Carat interface routines
+    gap/methods.gi:   methods (using Carat) for higher level
+                      functions declared in the GAP library 
+
+    The contents of the following file might eventually be moved to the 
+    GAP library:
+
+    gap/util.gi:      Stabilizer for groups without membership test
+
+Documentation:
+
+    doc/manual.dvi:   documentation
+
+
+
+

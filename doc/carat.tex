@@ -1,0 +1,219 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Chapter{Interface to Carat}
+
+This share package provides a {\GAP} interface to Carat, 
+a package of programs for the computation with crystallographic 
+groups. Carat itself is implemented in C, and has been developed at 
+Lehrstuhl B f{\accent127 u}r Mathematik, RWTH Aachen. It runs on many 
+Unix systems.
+
+The {GAP} interface consists of two parts, low level interface 
+routines to Carat functions on the one hand, and comfortable high 
+level {\GAP} functions on the other hand. The high level functions,
+implemented in terms of the low level functions, provide actually
+methods for functions and operations declared in the {GAP} library.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Action from the left and from the right}
+
+In crystallography, the convention usually is that matrix groups
+act from the left on column vectors. This convention is adopted
+also in Carat. The low level interface routines described below
+must respect this convention and provide Carat with data in the 
+expected format.
+
+On the other hand, in {\GAP} the convention is that all groups 
+act from the right, in the case of matrix groups on row vectors. 
+However, in order to make {\GAP} accessible to crystallographers,
+many functions important in crystallography are provided in two
+variants, one for each convention. This is the case for all high
+level routines provided by this package. Where necessary, these high
+level routines translate to and from the convention used by Carat.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Carat input and output files}
+
+Carat routines read their input from one or several input files,
+and write the result to standard output. In order to use Carat
+routines from within {\GAP}, the input must be prepared in suitably
+formatted input files. A Carat command is then executed with these
+input files, with standard output redirected to an output file, 
+which is read back into {\GAP} afterwards. This section describes
+routines interfacing with Carat input and output files.
+
+Working with Carat requires many temporary files. When the Carat
+package is loaded, a temporary directory is created, where one can
+put such files. The routine
+
+\>CaratTmpFile( <filename> ) F
+
+returns a file name <filename> in the Carat temporary directory, which
+can be used to store temporary data. Of course, it is also possible
+to use any other file name, for instance files in the current directory.
+
+\>CaratShowFile( <filename> ) F
+
+displays the contents of any text file on the terminal. This can be
+used to inspect the contents of Carat input and output files.
+
+Most Carat data files are in either of two formats. The first Carat
+file type is the Matrix File, containing one or several matrices.
+The following routines serve as interface to Carat Matrix Files.
+
+\>CaratWriteMatrixFile( <filename>, <data> ) F
+
+takes a file name and a matrix or a list of matrices, and writes the
+matrix or matrices to the file.
+
+\>CaratReadMatrixFile( <filename> ) F
+
+reads a Carat matrix file, and returns a matrix or a list of matrices
+read from the file.
+
+The second Carat file type is the Bravais File, containing information
+on a finite unimodular group. In { \GAP}, the contents of a Bravais File 
+is represented by a Bravais record, having the following components:
+\beginitems
+`generators'   & generators of the finite unimodular group
+
+`formspace'    & basis of the space of invariant forms (optional)
+
+`centerings'   & list of centering matrices (optional)
+
+`normalizer'   & additional generators of the normalizer in GL(n,Z) (optional)
+
+`centralizer'  & additional generators of the centralizer in GL(n,Z) (optional)
+
+`size'         & size of the unimodular group (optional)
+\enditems
+
+The following routines serve as interface to Carat Bravais Files.
+
+\>CaratWriteBravaisFile( <filename>, <data> ) F
+
+takes a file name and a Bravais record, and writes the data in the
+Bravais record to the file.
+
+\>CaratReadBravaisFile( <filename> ) F
+
+reads a Bravais File, and returns the resulting Bravais record.
+
+Certain Carat programs produce output files in a special format.
+These files usually consist of a varying number of header lines, 
+followed by the data of several Bravais records. The header lines 
+are currently just discarded.
+
+\>CaratReadQtoZFile( <filename> ) F
+
+reads the output file of Carat program QtoZ, and returns the
+resulting list of Bravais records. 
+
+\>CaratReadBravaisInclusionsFile( <filename> ) F
+
+reads the output file of Carat program Bravais\_inclusions, 
+and returns the resulting list of Bravais records. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Executing Carat commands}
+
+To execute a Carat program from within {\GAP}, some low level,
+general purpose routines are provided in this share package. 
+Higher level routines for certain Carat functions may be available 
+in the {\GAP} library or in other share packages. These higher
+level functions are expected to use the following low level routines,
+so that changes in the low level interface will be transparent. 
+
+An arbitrary Carat program can be executed with the routine
+
+\>CaratCommand( <command>, <args>, <outfile> ) F
+
+where <command> is the name of a Carat program, <args> is a string
+containing the command line arguments of the Carat program,
+and <outfile> is the name of the file to which the output is to be 
+written. Example:
+
+\beginexample
+    gap> CaratCommand( "Z_equiv", "file1 file2", "file.out" );
+\endexample
+
+A short description of the arguments and options of any Carat 
+program can be obtained from the Carat online help facility with
+
+\>CaratHelp( <command> ) F
+
+where <command> is the name of the Carat program. CaratHelp executes
+the program with the `-h' option, and writes the output to the 
+terminal. Example:
+
+\beginexample
+    gap> CaratHelp( "Z_equiv" );
+\endexample
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Methods provided by Carat}
+
+Carat implements methods for the following functions and operations
+declared in the {\GAP} library. For a detailed description of these
+functions, please consult the {\GAP} manual (section "Matrix Groups
+in Characteristic 0").
+
+\index{IsBravaisGroup}
+\index{IsBravaisGroupOnRight}
+\index{IsBravaisGroupOnLeft}
+
+\index{BravaisGroup}
+\index{BravaisGroupOnRight}
+\index{BravaisGroupOnLeft}
+
+\index{BravaisSubgroups}
+\index{BravaisSubgroupsOnRight}
+\index{BravaisSubgroupsOnLeft}
+
+\index{BravaisSupergroups}
+\index{BravaisSupergroupsOnRight}
+\index{BravaisSupergroupsOnLeft}
+
+\index{NormalizerInGlnZBravaisGroup}
+\index{NormalizerInGlnZBravaisGroupOnRight}
+\index{NormalizerInGlnZBravaisGroupOnLeft}
+
+\index{Normalizer!in GLnZ}
+\index{Centralizer!in GLnZ}
+\index{ZClassRepsQClass}
+\index{RepresentativeOperation!in GLnZ}
+
+\begintt
+IsBravaisGroup
+IsBravaisGroupOnRight
+IsBravaisGroupOnLeft
+
+BravaisGroup
+BravaisGroupOnRight
+BravaisGroupOnLeft
+
+BravaisSubgroups
+BravaisSubgroupsOnRight
+BravaisSubgroupsOnLeft
+
+BravaisSupergroups
+BravaisSupergroupsOnRight
+BravaisSupergroupsOnLeft
+
+NormalizerInGLnZBravaisGroup
+NormalizerInGLnZBravaisGroupOnRight 
+NormalizerGLnZBravaisGroupOnLeft 
+
+Normalizer(  GL(<n>, Integers), <G> ) 
+Centralizer( GL(<n>, Integers), <G> )
+
+ZClassRepsQClass
+
+RepresentativeOperation( GL(<n>,Integers), <G1>, <G2> )
+\endtt
+
+
+
+
+
