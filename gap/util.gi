@@ -50,6 +50,7 @@ CaratStabilizerInfiniteGroup := function ( G, d, opr )
         for pnt in d do
             stb := CaratStabilizerInfiniteGroup( stb, pnt, OnPoints );
         od;
+        return stb;
 
     # other operation
     else

@@ -343,7 +343,7 @@ function( G )
     fi;
     gens := GeneratorsOfGroup( G );
     if IsFinite( N ) then
-        return Stabilizer( N, gens, OnTuples );
+        return Centralizer( N, G );
     else
         return CaratStabilizerInfiniteGroup( N, gens, OnTuples );
     fi;
@@ -407,7 +407,7 @@ function( glnz, grp1, grp2, opr )
     CaratWriteBravaisFile( grp2file, data );
 
     # execute Carat program
-    args := Concatenation( grp1file, " ", grp2file );
+    args := Concatenation( grp2file, " ", grp1file );
     CaratCommand( "Z_equiv", args, resfile );
 
     # read back the result
