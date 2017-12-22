@@ -62,5 +62,9 @@ Version 2.1.6
 
   - updated config.guess
 
+Version 2.1.7
+
+  - improved build instructions for gcc 5 or higher
+
 
 

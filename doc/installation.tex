@@ -6,7 +6,7 @@ the {\GAP} 4 root directories. We assume here that this is `/gap4/pkg'.
 
 \begintt
 cd /gap4/pkg
-tar zpxf carat-2.1.6.tar.gz
+tar zpxf carat-2.1.7.tar.gz
 \endtt
 
 This creates a subdirectory `carat', the home directory of the present
@@ -31,10 +31,11 @@ full path of this new directory, possibly along with new values for `CC' and
 line:
 
 \begintt
-make TOPDIR=`pwd`
+make TOPDIR=`pwd` CFLAGS='-O -std=gnu89' 
 chmod -R a+rX .
 \endtt
 
+The flag '-std=gnu89' is necessary if you use gcc of version 5 or higher.
 If you build for more than one architecture, make sure to do a 
 'make clean' in between.
 

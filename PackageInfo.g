@@ -9,12 +9,12 @@ PackageName := "Carat",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.1.6",
+Version := "2.1.7",
 
-Date := "23/05/2016",
+Date := "22/12/2017",
 
 ArchiveURL := 
-  "http://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/carat-2.1.6",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/carat-2.1.7",
 
 ArchiveFormats := ".tar.gz",
 
@@ -27,7 +27,7 @@ Persons := [
     IsAuthor := true,
     IsMaintainer := true,
     Email := "gaehler@math.uni-bielefeld.de",
-    WWWHome := "http://www.math.uni-bielefeld.de/~gaehler/",
+    WWWHome := "https://www.math.uni-bielefeld.de/~gaehler/",
     #PostalAddress := "",           
     Place := "Bielefeld",
     Institution := "Mathematik, Universität Bielefeld"
@@ -58,7 +58,7 @@ of Bravais groups, which are all missing in <span class=\"pkgname\">Cryst\
 </span>. A catalog of Bravais groups up to dimension 6 is also provided.",
 
 PackageWWWHome := 
-  "http://www.math.uni-bielefeld.de/~gaehler/gap45/packages.php",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap45/packages.php",
 
 PackageDoc  := rec(
   BookName  := "Carat",
