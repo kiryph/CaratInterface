@@ -570,7 +570,7 @@ InstallGlobalFunction( CaratQClassCatalog, function( grp , mode )
     # get the transformation matrix
     if with_trans then
         str := CaratReadLine( input );
-        res.trans := CaratReadMatrix( input, str );
+        res.trans := CaratReadMatrix( input, str )^-1;
     fi;
 
     # get the equivalent catalog group
@@ -608,7 +608,7 @@ InstallGlobalFunction( "ConjugatorQClass", function( G1, G2 )
     if Size( G1 ) <> Size( G2 ) then
         return fail;
     fi;
-    if DimensionOfMatrixGroup(G1) > 6 or DimensionOfMatrixGroup(G2) > 6 then
+    if DimensionOfMatrixGroup(G1) > 6 then
         Error( "ConjugatorQClass: only dimensions up to 6 are supported ");
     fi;
 
@@ -617,7 +617,7 @@ InstallGlobalFunction( "ConjugatorQClass", function( G1, G2 )
     if R1.qclass <> R2.qclass then
         return fail;
     else
-        return R2.trans^-1*R1.trans;
+        return R1.trans*R2.trans^-1;
     fi;
 
 end );
