@@ -1,0 +1,222 @@
+############################################################################
+# This is a copy of the original CARAT Makefile, from which the
+# building of the (outdated) GMP library bundled with CARAT has
+# been stripped off. Instead, CARAT (to be used with GAP) is built
+# with the same GMP library as GAP. For this purpose, the companion
+# configure script and wrapper Makefile need to be used, which hand
+# over the necessary compile and link flags to this Makefile.
+
+
+############################################################################
+# Makefile for the CARAT package, distributed by
+#    Lehrstuhl B fuer Mathematik
+#    RWTH Aachen
+#    Templergraben 64
+#    52064 Aachen
+#    Germany
+#    email: carat@momo.math.rwth-aachen.de
+#
+# To install the CARAT package, just edit the variables
+# TOPDIR (which is the present directory), CC and CFLAGS
+# below.
+# If you need additional include pathes, please add them
+# to the compiler, ie CC= gcc -I/YOUR_INCUDE_PATH
+#
+# If GMP is already installed on your system, then compilation time
+# can be shortened by removing "Gmp" from the target "ALL".
+#
+# If you encounter any problems, please contact
+#    carat@momo.math.rwth-aachen.de
+############################################################################
+
+
+#
+# put the top level directory of the Installation here
+# ( try "pwd" if in doubt)
+#
+TOPDIR=/home/carat
+
+#
+# normal installations on Linux should work with
+# CC = gcc
+#
+# For Mac OS X 10.4, please try
+# CC = gcc -I/sw/include
+#¤
+CC = gcc
+
+# There are some special preprocessor flags which set some
+# memory diagnostics:
+# Use -DDIAG1 to check for not properly used memory only
+# when calling malloc(...) and free(..), and -DDIAG2 to
+# have a general control whats going on. THIS IS VERY SLOW.
+# For the normal user we recommend neither to use -DDIAG1 nor -DDIAG2!
+
+CFLAGS = -g -Wall -DDIAG1
+                                       # the flag -fwritable-strings is
+                                       # required for the use with gcc
+
+# CFLAGS = -g -Aa                        # for a HP-UX-machine using cc
+
+# CFLAGS = -mcpu=pentiumpro
+
+
+# The part below doesn't (better: shouldn't) need any editing
+#============================================================================
+
+# Some SUN-OS will need ranlib to be run on the library.
+# This part is stolen from the gmp-Makefile
+RANLIB_TEST = [ -f /usr/bin/ranlib -o -f /bin/ranlib ]
+RANLIB = ranlib
+
+
+ALL: Makefile\
+     Autgrp\
+     Base\
+     Bravais\
+     Contrib\
+     Datei\
+     Getput\
+     Graph\
+     Hyperbolic\
+     Idem\
+     Links\
+     Longtools\
+     Name\
+     Matrix\
+     M_alloc\
+     Orbit\
+     Polyeder\
+     Presentation\
+     Qcatalog\
+     Reduction\
+     Sort\
+     Symm\
+     Tools\
+     TSubgroups\
+     Voronoi\
+     Zassen\
+     ZZ\
+     Executables
+
+Autgrp: Makefile functions/Autgrp/Makefile
+	cd functions/Autgrp; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Base: Makefile functions/Base/Makefile
+	cd functions/Base; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Bravais: Makefile functions/Bravais/Makefile
+	cd functions/Bravais;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Contrib: Makefile functions/Contrib/Makefile
+	cd functions/Contrib;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Datei: Makefile functions/Datei/Makefile
+	cd functions/Datei;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Getput: Makefile functions/Getput/Makefile
+	cd functions/Getput;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Graph: Makefile functions/Graph/Makefile
+	cd functions/Graph;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Hyperbolic: Makefile functions/Hyperbolic/Makefile
+	cd functions/Hyperbolic; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Idem: Makefile functions/Idem/Makefile
+	cd functions/Idem; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Links:
+	cd tables/symbol; $(MAKE)
+	cd lib ; rm -f libfunctions.a ; ln -f -s functions.a libfunctions.a
+	#rm -f $(TOPDIR)/functions/Gmp/m_alloc.h
+	#ln -f -s $(TOPDIR)/functions/gmp-4.2.1 $(TOPDIR)/functions/Gmp
+
+Longtools: Makefile functions/Longtools/Makefile
+	cd functions/Longtools; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Name: Makefile functions/Name/Makefile
+	cd functions/Name;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Matrix: Makefile functions/Matrix/Makefile
+	cd functions/Matrix;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+M_alloc: Makefile functions/M_alloc/Makefile
+	cd functions/M_alloc;$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Orbit: Makefile functions/Orbit/Makefile
+	cd functions/Orbit; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Polyeder: Makefile functions/Polyeder/Makefile
+	cd functions/Polyeder; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Presentation: Makefile functions/Presentation/Makefile
+	cd functions/Presentation; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Qcatalog: Makefile tables/qcatalog.tar.gz
+	cd tables; if [ !  -d qcatalog ] ; then gunzip -c qcatalog.tar.gz | tar xf - ; fi
+
+Reduction: Makefile functions/Reduction/Makefile
+	cd functions/Reduction; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Sort: Makefile functions/Sort/Makefile
+	cd functions/Sort; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Symm: Makefile functions/Symm/Makefile
+	cd functions/Symm; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Tools: Makefile functions/Tools/Makefile
+	cd functions/Tools; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+TSubgroups: Makefile functions/TSubgroups/Makefile
+	cd functions/TSubgroups; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Voronoi: Makefile functions/Voronoi/Makefile
+	cd functions/Voronoi; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Zassen: Makefile functions/Zassen/Makefile
+	cd functions/Zassen; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+ZZ: Makefile functions/ZZ/Makefile
+	cd functions/ZZ; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+Gmp:
+	cd functions ; tar xvzf gmp-4.2.1.tar.gz
+	cd functions/Gmp ; ./configure --prefix="$(TOPDIR)" ;\
+	$(MAKE) CFLAGS="$(CFLAGS)" CC="$(CC)" install 
+
+Executables: bin/Makefile
+	if $(RANLIB_TEST) ; then $(RANLIB) lib/functions.a; else true; fi
+	if $(RANLIB_TEST) ; then $(RANLIB) lib/libpresentation.a; else true; fi
+	if $(RANLIB_TEST) ; then $(RANLIB) lib/libm_alloc.a; else true; fi
+	cd bin; $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" TOPDIR=$(TOPDIR)
+
+clean:
+	cd bin; $(MAKE) clean
+	cd functions/Autgrp; $(MAKE) clean
+	cd functions/Base; $(MAKE) clean
+	cd functions/Bravais; $(MAKE) clean
+	cd functions/Contrib; $(MAKE) clean
+	cd functions/Datei; $(MAKE) clean
+	cd functions/Getput; $(MAKE) clean
+	cd functions/Graph; $(MAKE) clean
+	cd functions/Hyperbolic; $(MAKE) clean
+	cd functions/Idem; $(MAKE) clean
+	cd functions/Longtools; $(MAKE) clean
+	cd functions/Name; $(MAKE) clean
+	cd functions/Matrix; $(MAKE) clean
+	cd functions/M_alloc; $(MAKE) clean
+	cd functions/Orbit; $(MAKE) clean
+	cd functions/Polyeder; $(MAKE) clean
+	cd functions/Presentation; $(MAKE) clean
+	cd functions/Reduction; $(MAKE) clean
+	cd functions/Sort; $(MAKE) clean
+	cd functions/Symm; $(MAKE) clean
+	cd functions/Tools; $(MAKE) clean
+	cd functions/TSubgroups; $(MAKE) clean
+	cd functions/Voronoi; $(MAKE) clean
+	cd functions/Zassen; $(MAKE) clean
+	cd functions/ZZ; $(MAKE) clean
+	rm -rf functions/gmp-4.2.1
+	rm -rf functions/Gmp
+	rm -f lib/*
