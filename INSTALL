@@ -1,0 +1,24 @@
+INSTALLATION
+
+GAP is distributed together with a large number of packages, including
+this one. Carat is located inside the subdirectory pkg/carat/ of your GAP
+installation, and needs to be compiled. If you do not want to build all
+packages with the script BuildPackages.sh from GAP, you can build Carat
+alone by executing these commands inside the directory pkg/carat/:
+
+    ./configure <path to GAP root>
+    make
+
+The configure script optionally takes the path to the root directory of 
+your GAP installation as argument. The default ../.. should usually 
+work, but if you have unpacked Carat to a location like ~/.gap/pkg/carat/, 
+you need to explicitly give the path to the GAP root directory as argument.
+
+As CARAT's catalog of Q-classes of unimodular groups is rather large,
+it is unpacked by default only up to dimension 5. If you also want
+to unpack the data for dimension 6, you can do this with the extra
+command (again inside directory pkg/carat/)
+
+    make qcat6
+
+This adds another 150 Mb of data to the installation.
