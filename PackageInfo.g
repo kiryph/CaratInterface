@@ -9,16 +9,16 @@ PackageName := "Carat",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.1.7",
+Version := "2.2.0",
 
-Date := "22/12/2017",
+Date := "22/02/2017",
 
-ArchiveURL := 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/carat-2.1.7",
+ArchiveURL := Concatenation( 
+  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/carat-", ~.Version ),
 
 ArchiveFormats := ".tar.gz",
 
-BinaryFiles := [ "doc/manual.pdf", "doc/manual.dvi", "carat-2.1b1.tgz" ],
+BinaryFiles := [ "doc/manual.pdf", "doc/manual.dvi", "carat.tgz" ],
 
 Persons := [
   rec(
@@ -41,14 +41,14 @@ CommunicatedBy := "Herbert Pahlings (Aachen)",
 AcceptDate := "02/2000",
 
 README_URL := 
-  "http://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/README.carat",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/README.carat",
 PackageInfoURL := 
-  "http://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/PackageInfo.g",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/PackageInfo.g",
 
 AbstractHTML := 
 "This package provides <span class=\"pkgname\">GAP</span> interface \
 routines to some of the stand-alone programs of <a \
-href=\"http://wwwb.math.rwth-aachen.de/carat\">CARAT</a>, a package \
+href=\"https://wwwb.math.rwth-aachen.de/carat\">CARAT</a>, a package \
 for the computation with crystallographic groups. CARAT is to a large \
 extent complementary to the <span class=\"pkgname\">GAP</span> package \
 <span class=\"pkgname\">Cryst</span>. In particular, it provides \
@@ -60,14 +60,20 @@ of Bravais groups, which are all missing in <span class=\"pkgname\">Cryst\
 PackageWWWHome := 
   "https://www.math.uni-bielefeld.de/~gaehler/gap45/packages.php",
 
+SourceRepository := rec(
+  Type := "git",
+  URL := Concatenation( "https://github.com/gap-packages/",
+                        LowercaseString( ~.PackageName ) ) ),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+SupportEmail := "gaehler@math.uni-bielefeld.de",
+
 PackageDoc  := rec(
   BookName  := "Carat",
   ArchiveURLSubset := ["doc", "htm"],
   HTMLStart := "htm/chapters.htm",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "Interface to CARAT, a crystallographic groups package",
-  Autoload  := true
+  LongTitle := "Interface to CARAT, a crystallographic groups package"
 ),
 
 Dependencies := rec(
@@ -94,7 +100,7 @@ AvailabilityTest := function()
   return true;
 end,
 
-#TestFile := "tst/testall.g",
+TestFile := "tst/testall.g",
 
 Keywords := [ "crystallographic groups", "finite unimodular groups", "GLnZ" ]
 

@@ -1,9 +1,63 @@
-Version 1.1:
+Version 2.2.0
 
-  - addition of an access function for the CARAT Q-class catalog;
-    new function ConjugatorQClass
+  - new CARAT tarball from Aachen, includes now a GPL 3 license file
+  - new build system with configure & make, builds CARAT with the same
+    GMP library as GAP
+  - bugs in ConjugatorQClass and CaratQClassCatalog fixed
+  - testfiles added
 
-  - switch to CARAT 1.2
+Version 2.1.7
+
+  - improved build instructions for gcc 5 or higher
+
+Version 2.1.6
+
+  - updated config.guess
+
+Version 2.1.5
+
+  - build only static version of gmplib, so that this one must be used
+
+Version 2.1.4
+
+  - fixed file permissions
+
+Version 2.1.3
+
+  - another small fix in PackageInfo.g
+
+Version 2.1.2
+
+  - small fix in PackageInfo.g
+
+Version 2.1.1
+
+  - update to GAP version 4.5
+
+Version 2.1
+
+  - update to CARAT version 2.1b1
+
+Version 2.0.2
+
+  - included updated version of CARAT 2.0 with a newer version of GMP,
+    which compiles also with gcc 4.1.
+
+Version 2.0.1
+
+  - BravaisGroupsCrystalFamily stored wrong sizes in groups.
+
+Version 2.0
+
+  - switch to CARAT 2.0 (without GAP interface update)
+
+Version 1.1.3
+
+  - BravaisSubgroups and BravaisSupergroups stored wrong sizes in groups.
+
+Version 1.1.2
+
+  - File manual.toc added.
 
 Version 1.1.1
 
@@ -13,58 +67,9 @@ Version 1.1.1
 
   - Support for new package loading mechanism in GAP 4.4
 
-Version 1.1.2
+Version 1.1:
 
-  - File manual.toc added.
+  - addition of an access function for the CARAT Q-class catalog;
+    new function ConjugatorQClass
 
-Version 1.1.3
-
-  - BravaisSubgroups and BravaisSupergroups stored wrong sizes in groups.
-
-Version 2.0
-
-  - switch to CARAT 2.0 (without GAP interface update)
-
-Version 2.0.1
-
-  - BravaisGroupsCrystalFamily stored wrong sizes in groups.
-
-Version 2.0.2
-
-  - included updated version of CARAT 2.0 with a newer version of GMP,
-    which compiles also with gcc 4.1.
-
-Version 2.1
-
-  - update to CARAT version 2.1b1
-
-Version 2.1.1
-
-  - update to GAP version 4.5
-
-Version 2.1.2
-
-  - small fix in PackageInfo.g
-
-Version 2.1.3
-
-  - another small fix in PackageInfo.g
-
-Version 2.1.4
-
-  - fixed file permissions
-
-Version 2.1.5
-
-  - build only static version of gmplib, so that this one must be used
-
-Version 2.1.6
-
-  - updated config.guess
-
-Version 2.1.7
-
-  - improved build instructions for gcc 5 or higher
-
-
-
+  - switch to CARAT 1.2
