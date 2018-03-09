@@ -44,6 +44,18 @@ elif [[ -d "$GAPROOT/bin/$GAParch/extern/gmp" ]]; then
     # up to GAP 4.8 with bundled GMP
     GMPDIR="$GAPROOT/bin/$GAParch/extern/gmp"
 fi
+# not GMP bundled with GAP; is --with-gmp=<path> given in GAP's configure?
+if test -z "$GMPDIR"; then
+    for word in $(grep '\-\-with-gmp=' "$GAPROOT/config.log"); do
+        pp="${word#--with-gmp=}"
+        if [[ "$word" != "$pp" ]]; then
+            case "$pp" in
+                yes|no|system|builtin) ;;
+                *) GMPDIR="$pp"; ;;
+            esac
+        fi
+    done
+fi
 
 # link and include dirs for GMP library
 GMPINC=
