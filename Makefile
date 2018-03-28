@@ -47,7 +47,7 @@ qcat6: carat/tables/qcatalog/dim6
 # compile and link the CARAT binaries
 programs: Makefile_CARAT config.carat
 	sed -i 's/#include <malloc.h>/\/* inclusion of malloc.h removed *\//g' carat/include/typedef.h
-	cd carat; make -f ../Makefile_CARAT TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(CFLAGS)"
+	cd carat; make -f ../Makefile_CARAT TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS)"
 	chmod -R a+rX .
 
 # make a suitable link, so that GAP can find the CARAT binaries

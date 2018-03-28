@@ -12,16 +12,20 @@
 
 error() { printf "ERROR: %s\n" "$@" ; exit 1 ; }
 
-# get hold of $GAPROOT
+
+# get hold of $GAPROOT, and possibly $GMPDIR
+GMPDIR=
 GAPROOT="$(cd ../.. && pwd)"
-if [[ "$#" -ge 1 ]]; then
+while [[ "$#" -ge 1 ]]; do
   option="$1" ; shift
   case "$option" in
-    --with-gaproot)   GAPROOT="$1"; shift ;;
-    --with-gaproot=*) GAPROOT=${option#--with-gaproot=}; ;;
+    --with-gmp=*)     GMPDIR="${option#--with-gmp=}"; ;;
+    --with-gaproot)   GAPROOT="$1"; shift; ;;
+    --with-gaproot=*) GAPROOT="${option#--with-gaproot=}"; ;;
     *)                GAPROOT="$option"; ;;
   esac
-fi
+done
+
 # we need an absolute path
 GAPROOT="$(cd $GAPROOT && pwd)"
 
@@ -36,22 +40,27 @@ fi
 source "$GAPROOT/sysinfo.gap"
 
 # where is the GMP library?
-GMPDIR=
-if [[ -d "$GAPROOT/extern/install/gmp" ]]; then
-    # GAP 4.9 and later with bundled GMP
-    GMPDIR="$GAPROOT/extern/install/gmp"
-elif [[ -d "$GAPROOT/bin/$GAParch/extern/gmp" ]]; then
-    # up to GAP 4.8 with bundled GMP
-    GMPDIR="$GAPROOT/bin/$GAParch/extern/gmp"
+# if not set by this configure, get the GMP bundled with GAP
+HAVE_GAPGMP=
+if test -z "$GMPDIR"; then
+    if [[ -d "$GAPROOT/extern/install/gmp" ]]; then
+        # GAP 4.9 and later with bundled GMP
+        GMPDIR="$GAPROOT/extern/install/gmp"
+        HAVE_GAPGMP="yes"
+    elif [[ -d "$GAPROOT/bin/$GAParch/extern/gmp" ]]; then
+        # up to GAP 4.8 with bundled GMP
+        GMPDIR="$GAPROOT/bin/$GAParch/extern/gmp"
+        HAVE_GAPGMP="yes"
+    fi
 fi
-# not GMP bundled with GAP; is --with-gmp=<path> given in GAP's configure?
+# if still no GMP, try the one given as --with-gmp=<path> in GAP's configure
 if test -z "$GMPDIR"; then
     for word in $(grep '\-\-with-gmp=' "$GAPROOT/config.log"); do
         pp="${word#--with-gmp=}"
         if [[ "$word" != "$pp" ]]; then
             case "$pp" in
                 yes|no|system|builtin) ;;
-                *) GMPDIR="$pp"; ;;
+                *) GMPDIR="$pp"; HAVE_GAPGMP="yes"; ;;
             esac
         fi
     done
@@ -71,7 +80,7 @@ fi
 # link and compile flag for GMP library
 # we need the -m32 flag if we use GMP bundled with GAP and GAP is 32bit
 GMPFLAG=
-if test -n "$GMPDIR"; then
+if test -n "$HAVE_GAPGMP"; then
     HAVE_m32=
     if [[ -f "$GAPROOT/cnf/GAP-CFLAGS" ]]; then
         # GAP 4.9 or higher
@@ -99,11 +108,11 @@ elif test -n "$(which curl)"; then
     GET=curl -O
 fi  
 
-CFLAGS="-O $GMPINC $GMPFLAG $GMPLIB"
+FLAGS="-O $GMPINC $GMPFLAG $GMPLIB"
 
 # write out everything, so that we can include it in Makefile
-echo "TOPDIR=$(pwd)/carat" > config.carat
-echo "ARCHDIR=$GAParch"   >> config.carat
-echo "CC=$GAP_CC"         >> config.carat
-echo "CFLAGS=$CFLAGS"     >> config.carat
-echo "GET=$GET"           >> config.carat
+echo "TOPDIR=$(pwd)/carat"   > config.carat
+echo "ARCHDIR=$GAParch"     >> config.carat
+echo "CC=$GAP_CC"           >> config.carat
+echo "FLAGS=$FLAGS $CFLAGS" >> config.carat
+echo "GET=$GET"             >> config.carat
