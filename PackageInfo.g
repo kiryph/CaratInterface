@@ -9,9 +9,9 @@ PackageName := "Carat",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.2.1",
+Version := "2.2.2",
 
-Date := "06/03/2018",
+Date := "28/03/2018",
 
 ArchiveURL := Concatenation( 
   "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/carat-", ~.Version ),
