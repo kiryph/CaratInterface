@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gap-packages/carat.svg?branch=master)](https://travis-ci.org/gap-packages/carat)
+[![Code Coverage](https://codecov.io/github/gap-packages/carat/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/carat)
 
 The GAP 4 package "Interface to CARAT", briefly called just Carat, 
 provides GAP interface routines to some of the stand-alone programs 
