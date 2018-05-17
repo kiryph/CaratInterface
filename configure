@@ -105,7 +105,7 @@ GET=
 if test -n "$(which wget)"; then
     GET=wget
 elif test -n "$(which curl)"; then
-    GET=curl -O
+    GET="curl -O"
 fi  
 
 FLAGS="-O $GMPINC $GMPFLAG $GMPLIB"
