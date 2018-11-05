@@ -1,3 +1,8 @@
+Version 2.2.3
+
+  - build system improvements - compiles now on MacOS
+  - automatic tests and code coverage of tests added
+
 Version 2.2.2
 
   - added more flexibility to build process
