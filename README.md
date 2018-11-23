@@ -25,7 +25,7 @@ the distribution. All rights and responsibilities regarding CARAT
 remain with its authors. The most recent version of CARAT can be
 obtained at the CARAT Home Page
 
-    https://wwwb.math.rwth-aachen.de/carat/
+    http://134.130.169.213/carat/index.html
 
 Questions and bug reports regarding CARAT itself should be addressed 
 to the CARAT authors at
