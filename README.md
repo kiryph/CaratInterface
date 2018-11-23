@@ -25,7 +25,7 @@ the distribution. All rights and responsibilities regarding CARAT
 remain with its authors. The most recent version of CARAT can be
 obtained at the CARAT Home Page
 
-    http://134.130.169.213/carat/index.html
+http://134.130.169.213/carat/index.html
 
 Questions and bug reports regarding CARAT itself should be addressed 
 to the CARAT authors at
@@ -45,4 +45,4 @@ The GAP interface routines to CARAT have been written by
 For bug reports, suggestions and other comments please use the issue
 tracker on the GitHub page of the package:
 
-    https://github.com/gap-packages/carat/issues
+https://github.com/gap-packages/carat/issues
