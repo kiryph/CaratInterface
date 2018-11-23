@@ -31,7 +31,7 @@ ALL: carat qcatalog programs arch
 
 # fetch carat.tgz if necessary, and unpack it
 carat.tgz:
-	"$(GET)" "https://wwwb.math.rwth-aachen.de/carat/carat.tgz"
+	"$(GET)" "http://134.130.169.213/carat/carat.tgz"
 carat/Makefile: carat.tgz
 	tar pzxf carat.tgz
 	touch $@
