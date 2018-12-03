@@ -14,7 +14,7 @@ Version := "2.2.3",
 Date := "04/11/2018",
 
 ArchiveURL := Concatenation( 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/carat-", ~.Version ),
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/carat-", ~.Version ),
 
 ArchiveFormats := ".tar.gz",
 
@@ -41,9 +41,9 @@ CommunicatedBy := "Herbert Pahlings (Aachen)",
 AcceptDate := "02/2000",
 
 README_URL := 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/README.carat",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/README.carat",
 PackageInfoURL := 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap45/Carat/PackageInfo.g",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/PackageInfo.g",
 
 AbstractHTML := 
 "This package provides <span class=\"pkgname\">GAP</span> interface \
@@ -58,7 +58,7 @@ of Bravais groups, which are all missing in <span class=\"pkgname\">Cryst\
 </span>. A catalog of Bravais groups up to dimension 6 is also provided.",
 
 PackageWWWHome := 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap45/packages.php",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/packages.php",
 
 SourceRepository := rec(
   Type := "git",
@@ -77,9 +77,9 @@ PackageDoc  := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">=4.5",
+  GAP := ">=4.9",
   NeededOtherPackages := [],
-  SuggestedOtherPackages := [ [ "Cryst", ">=4.1.9" ] ],
+  SuggestedOtherPackages := [ [ "Cryst", ">=4.1.17" ] ],
   ExternalConditions := []
 ),
 

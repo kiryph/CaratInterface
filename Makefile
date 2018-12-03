@@ -34,7 +34,7 @@ carat.zip:
 	"$(GET)" "https://github.com/lbfm-rwth/carat/archive/master.zip"
 	mv master.zip carat.zip
 carat/Makefile: carat.zip
-	unzip carat.zip
+	unzip -o carat.zip
 	ln -s carat-* carat
 	touch $@
 carat: carat/Makefile
@@ -52,7 +52,7 @@ carat/tables/qcatalog/dim6/BASIS: carat/tables/qcatalog/TGROUPS.GAP
 qcat6: carat/tables/qcatalog/dim6/BASIS
 
 # compile and link the CARAT binaries
-programs: Makefile_CARAT config.carat carat/Makefile
+programs: config.carat carat/Makefile
 	sed 's/#include <malloc.h>/\/* inclusion of malloc.h removed *\//g' < carat/include/typedef.h > typedef.tmp
 	mv typedef.tmp carat/include/typedef.h
 	cd carat; make TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"

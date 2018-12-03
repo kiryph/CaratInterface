@@ -8,11 +8,11 @@
 
 ./make_tar
 
-cp ../README        ~/WWW/gap45/Carat/README.carat
-cp VERSION          ~/WWW/gap45/Carat
-cp changelog.html   ~/WWW/gap45/Carat
-mv *.tar.gz         ~/WWW/gap45/Carat
-cp ../PackageInfo.g ~/WWW/gap45/Carat
+cp ../README        ~/WWW/gap/Carat/README.carat
+cp VERSION          ~/WWW/gap/Carat
+cp changelog.html   ~/WWW/gap/Carat
+mv *.tar.gz         ~/WWW/gap/Carat
+cp ../PackageInfo.g ~/WWW/gap/Carat
 
-cd ~/WWW/gap45; ./get_html; chmod -R a+r *
+cd ~/WWW/gap; ./get_html; chmod -R a+r *
 
