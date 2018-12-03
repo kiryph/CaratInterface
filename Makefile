@@ -29,11 +29,13 @@ include config.carat
 # build everything
 ALL: carat qcatalog programs arch
 
-# fetch carat.tgz if necessary, and unpack it
-carat.tgz:
-	"$(GET)" "http://134.130.169.213/carat/carat.tgz"
-carat/Makefile: carat.tgz
-	tar pzxf carat.tgz
+# fetch carat.zip if necessary, and unpack it
+carat.zip:
+	"$(GET)" "https://github.com/lbfm-rwth/carat/archive/master.zip"
+	mv master.zip carat.zip
+carat/Makefile: carat.zip
+	unzip carat.zip
+	ln -s carat-* carat
 	touch $@
 carat: carat/Makefile
 
@@ -53,7 +55,7 @@ qcat6: carat/tables/qcatalog/dim6/BASIS
 programs: Makefile_CARAT config.carat carat/Makefile
 	sed 's/#include <malloc.h>/\/* inclusion of malloc.h removed *\//g' < carat/include/typedef.h > typedef.tmp
 	mv typedef.tmp carat/include/typedef.h
-	cd carat; make -f ../Makefile_CARAT TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
+	cd carat; make TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
 	chmod -R a+rX .
 
 # make a suitable link, so that GAP can find the CARAT binaries

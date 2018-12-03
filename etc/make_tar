@@ -10,8 +10,8 @@ rm -f $PKGTAR*
 
 # make the package archive
 mkdir -p carat/doc carat/gap carat/htm carat/tst
-cp -p ../*.g ../README ../INSTALL ../Changelog ../GPL ../carat.tgz carat/
-cp -p ../Makefile ../configure ../Makefile_CARAT carat/
+cp -p ../*.g ../README ../INSTALL ../Changelog ../GPL ../carat.zip carat/
+cp -p ../Makefile ../configure carat/
 cp -p ../doc/manual.bbl ../doc/manual.six ../doc/manual.lab ../doc/manual.toc \
   ../doc/manual.mst ../doc/manual.pdf ../doc/*.tex ../doc/make_doc carat/doc/
 cp -p ../gap/*.g[di] carat/gap/
