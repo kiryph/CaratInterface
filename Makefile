@@ -66,6 +66,7 @@ arch: config.carat carat/Makefile
 
 # clean up everything
 clean: config.carat
+	cd carat; make clean
 	if [ -d "bin/$(ARCHDIR)/" ]; then rm -f "bin/$(ARCHDIR)"/*; fi
 	if [ -h "bin/$(ARCHDIR)"  ]; then rm "bin/$(ARCHDIR)"; fi
 
