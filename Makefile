@@ -53,8 +53,6 @@ qcat6: carat/tables/qcatalog/dim6/BASIS
 
 # compile and link the CARAT binaries
 programs: config.carat carat/Makefile
-	sed 's/#include <malloc.h>/\/* inclusion of malloc.h removed *\//g' < carat/include/typedef.h > typedef.tmp
-	mv typedef.tmp carat/include/typedef.h
 	cd carat; make TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
 	chmod -R a+rX .
 

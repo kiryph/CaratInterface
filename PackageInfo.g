@@ -85,11 +85,11 @@ Dependencies := rec(
 
 AvailabilityTest := function()
   local path;
-  # Carat is available only on UNIX
-  if not ARCH_IS_UNIX() then
-     LogPackageLoadingMessage(PACKAGE_INFO, "Carat is restricted to UNIX" );
-     return false;
-  fi;  
+  # Carat is available only on UNIX (maybe no longer true)
+  #if not ARCH_IS_UNIX() then
+  #   LogPackageLoadingMessage(PACKAGE_INFO, "Carat is restricted to UNIX" );
+  #   return false;
+  #fi;  
   # test the existence of a compiled binary; since there are
   # so many, we do not test for all of them, hoping for the best
   path := DirectoriesPackagePrograms( "carat" );
