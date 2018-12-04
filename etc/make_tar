@@ -10,7 +10,12 @@ rm -f $PKGTAR*
 
 # make the package archive
 mkdir -p carat/doc carat/gap carat/htm carat/tst
-cp -p ../*.g ../README ../INSTALL ../Changelog ../GPL ../carat.zip carat/
+cd carat
+  git clone https://github.com/lbfm-rwth/carat.git
+  tar zcf carat.tgz --exclude=carat/.git carat 
+  rm -rf carat
+cd ..
+cp -p ../*.g ../README ../INSTALL ../Changelog ../GPL carat/
 cp -p ../Makefile ../configure carat/
 cp -p ../doc/manual.bbl ../doc/manual.six ../doc/manual.lab ../doc/manual.toc \
   ../doc/manual.mst ../doc/manual.pdf ../doc/*.tex ../doc/make_doc carat/doc/

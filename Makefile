@@ -29,13 +29,12 @@ include config.carat
 # build everything
 ALL: carat qcatalog programs arch
 
-# fetch carat.zip if necessary, and unpack it
-carat.zip:
-	"$(GET)" "https://github.com/lbfm-rwth/carat/archive/master.zip"
-	mv master.zip carat.zip
-carat/Makefile: carat.zip
-	unzip -o carat.zip
-	ln -s carat-* carat
+# fetch CARAT if necessary, or unpack it
+carat/Makefile:
+	if [ ! -d carat ]; then \
+	  if [ -f carat.tgz ]; then tar pzxf carat.tgz; \
+	  else git clone https://github.com/lbfm-rwth/carat.git; fi; \
+	fi
 	touch $@
 carat: carat/Makefile
 
