@@ -1,6 +1,7 @@
 Version 2.dev
 
   - switched to GitHub version of CARAT
+  - catch the trivial 1d case in NormalizerInGLnZ
 
 Version 2.2.3
 

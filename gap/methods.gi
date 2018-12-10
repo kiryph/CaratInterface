@@ -144,6 +144,11 @@ CaratNormalizerInGLnZFunc := function( grp, opt )
         Error( "grp must be finite" );
     fi;
 
+    # catch a trivial case
+    if DimensionOfMatrixGroup( grp ) = 1 then
+        return GroupByGenerators( -One( grp ) );
+    fi;
+    
     # get temporary files
     grpfile := CaratTmpFile( "grp" );  
     resfile := CaratTmpFile( "res" );
