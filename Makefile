@@ -61,10 +61,14 @@ arch: config.carat carat/Makefile
 	rm -f "bin/$(ARCHDIR)"
 	ln -s "../carat/bin/`carat/bin/config.guess`-`basename $(CC)`" "bin/$(ARCHDIR)"
 
+# dynamic module for setting CARAT_DIR environment variable
+dynmod: src/setcaratdir.c
+	$(GAPROOT)/gac -d -o bin/$(ARCHDIR)/setcaratdir.so $<
+
 # clean up everything
 clean: config.carat
 	cd carat; make clean
-	if [ -d "bin/$(ARCHDIR)/" ]; then rm -f "bin/$(ARCHDIR)"/*; fi
+	if [ -d "bin/$(ARCHDIR)/" ]; then rm -rf "bin/$(ARCHDIR)"/*; fi
 	if [ -h "bin/$(ARCHDIR)"  ]; then rm "bin/$(ARCHDIR)"; fi
 
 .PHONY: all clean arch carat qcatalog qcat6

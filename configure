@@ -111,7 +111,8 @@ fi
 FLAGS="-O $GMPINC $GMPFLAG $GMPLIB"
 
 # write out everything, so that we can include it in Makefile
-echo "TOPDIR=$(pwd)/carat"   > config.carat
+echo "GAPROOT=$GAPROOT"      > config.carat
+echo "TOPDIR=$(pwd)/carat"  >> config.carat
 echo "ARCHDIR=$GAParch"     >> config.carat
 echo "CC=$GAP_CC"           >> config.carat
 echo "FLAGS=$FLAGS $CFLAGS" >> config.carat
