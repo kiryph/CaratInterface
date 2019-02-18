@@ -11,7 +11,8 @@ Subtitle := "Interface to CARAT, a crystallographic groups package",
 
 Version := "2.2.3",
 
-Date := "04/11/2018",
+Date := "04/11/2018", # dd/mm/yyyy format
+License := "GPL-2.0-or-later",
 
 ArchiveURL := Concatenation( 
   "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/carat-", ~.Version ),
