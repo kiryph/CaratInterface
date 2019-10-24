@@ -1,6 +1,11 @@
-Version 2.dev
+Version 2.3
 
   - switched to GitHub version of CARAT
+  - code cleanup in CARAT, resulting in a vastly reduced number of
+    compilation warnings
+  - support for a environment variable CARAT_DIR pointing to the
+    CARAT base directory. Using it, one can override the location
+    of CARAT at compile time
   - catch the trivial 1d case in NormalizerInGLnZ
 
 Version 2.2.3

@@ -67,7 +67,7 @@ dynmod: src/setcaratdir.c
 
 # clean up everything
 clean: config.carat
-	cd carat; make clean
+	if [ -d "carat/" ]; then cd carat; make clean; fi
 	if [ -d "bin/$(ARCHDIR)/" ]; then rm -rf "bin/$(ARCHDIR)"/*; fi
 	if [ -h "bin/$(ARCHDIR)"  ]; then rm "bin/$(ARCHDIR)"; fi
 

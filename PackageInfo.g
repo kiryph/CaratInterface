@@ -9,9 +9,9 @@ PackageName := "Carat",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.2.3",
+Version := "2.3",
 
-Date := "04/11/2018", # dd/mm/yyyy format
+Date := "24/10/2019", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 ArchiveURL := Concatenation( 
@@ -106,4 +106,3 @@ TestFile := "tst/testall.g",
 Keywords := [ "crystallographic groups", "finite unimodular groups", "GLnZ" ]
 
 ));
-

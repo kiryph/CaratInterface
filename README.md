@@ -36,11 +36,7 @@ https://github.com/gap-packages/carat/issues
 Please note that CARAT itself is not part of this package, even though
 a copy is included in the distribution. All rights and responsibilities
 regarding CARAT remain with its authors. CARAT can be obtained at the
-CARAT Home Page
-
-http://134.130.169.213/carat/index.html
-
-or from the public GitHub repository
+GitHub repository
 
 https://github.com/lbfm-rwth/carat
 
