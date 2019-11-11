@@ -6,7 +6,9 @@
 ##
 
 # location of Carat binaries
-BindGlobal( "CARAT_BIN_DIR", DirectoriesPackagePrograms( "carat" ) );
+BindGlobal( "CARAT_BIN_DIR",
+            List( DirectoriesPackagePrograms( "carat" ),
+                  dir -> Directory( Filename( dir, "carat" ) ) ) );
 
 # directory for temporary files created by interface routines
 BindGlobal( "CARAT_TMP_DIR", DirectoryTemporary() );

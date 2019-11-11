@@ -94,7 +94,7 @@ AvailabilityTest := function()
   # test the existence of a compiled binary; since there are
   # so many, we do not test for all of them, hoping for the best
   path := DirectoriesPackagePrograms( "carat" );
-  if Filename( path, "Z_equiv" ) = fail then
+  if Filename( path, "carat/Z_equiv" ) = fail then
      LogPackageLoadingMessage(PACKAGE_WARNING, "Carat binaries must be compiled" );
      return false;
   fi;

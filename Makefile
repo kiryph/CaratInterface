@@ -53,13 +53,14 @@ qcat6: carat/tables/qcatalog/dim6/BASIS
 
 # compile and link the CARAT binaries
 programs: config.carat carat/configure
-	(cd carat && ./configure "$(WITHGMP)" CC="$(CC)" CFLAGS="$(FLAGS)" && make)
+	(cd carat && ./configure $(WITHGMP) CC="$(CC)" CFLAGS="$(CFLAGS)" && make)
 	chmod -R a+rX .
 
 # make suitable links, so that GAP can find the CARAT binaries
 arch: config.carat carat/configure
-	mkdir -p "bin/$(ARCHDIR)"; chmod -R a+rx bin
-	cd "bin/$(ARCHDIR)/"; ln -s ../../carat/bin/* . 
+	if [ -h "bin/$(ARCHDIR)"  ]; then rm "bin/$(ARCHDIR)"; fi
+	mkdir -p "bin/$(ARCHDIR)"
+	ln -sf ../../carat/bin "bin/$(ARCHDIR)"/carat
 
 # dynamic module for setting CARAT_DIR environment variable
 dynmod: src/setcaratdir.c
@@ -68,7 +69,7 @@ dynmod: src/setcaratdir.c
 # clean up everything
 clean: config.carat
 	if [ -d "carat/" ]; then cd carat; make clean; fi
-	if [ -d "bin/$(ARCHDIR)/" ]; then rm -rf "bin/$(ARCHDIR)"/*; fi
+	rm -rf "bin/$(ARCHDIR)"
 	if [ -h "bin/$(ARCHDIR)"  ]; then rm "bin/$(ARCHDIR)"; fi
 
-.PHONY: all clean arch carat qcatalog qcat6
+.PHONY: all arch clean arch carat dynmod programs qcatalog qcat6
