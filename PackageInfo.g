@@ -9,7 +9,7 @@ PackageName := "Carat",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.3",
+Version := "2.3.1",
 
 Date := "24/10/2019", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",

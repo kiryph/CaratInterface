@@ -7,6 +7,7 @@
 #
 #    Usage: ./configure [<path to GAP root directory>]
 #           ./configure [--with-gaproot=<path to GAP root directory>]
+#                       [--with-gmp=<path to GMP installation directory]
 #
 # The default path to the GAP root directory is ../..
 
@@ -44,37 +45,23 @@ source "$GAPROOT/sysinfo.gap"
 HAVE_GAPGMP=
 if test -z "$GMPDIR"; then
     if [[ -d "$GAPROOT/extern/install/gmp" ]]; then
-        # GAP 4.9 and later with bundled GMP
         GMPDIR="$GAPROOT/extern/install/gmp"
-        HAVE_GAPGMP="yes"
-    elif [[ -d "$GAPROOT/bin/$GAParch/extern/gmp" ]]; then
-        # up to GAP 4.8 with bundled GMP
-        GMPDIR="$GAPROOT/bin/$GAParch/extern/gmp"
         HAVE_GAPGMP="yes"
     fi
 fi
 # if still no GMP, try the one given as --with-gmp=<path> in GAP's configure
 if test -z "$GMPDIR"; then
-    for word in $(grep '\-\-with-gmp=' "$GAPROOT/config.log"); do
-        pp="${word#--with-gmp=}"
-        if [[ "$word" != "$pp" ]]; then
-            case "$pp" in
-                yes|no|system|builtin) ;;
-                *) GMPDIR="$pp"; HAVE_GAPGMP="yes"; ;;
-            esac
-        fi
-    done
-fi
-
-# link and include dirs for GMP library
-GMPINC=
-GMPLIB=
-if test -n "$GMPDIR"; then
-    GMPINC="-I$GMPDIR/include/"
-    if [[ -f $GMPDIR/lib/libgmp.so ]]; then
-        GMPLIB="-Wl,-rpath=$GMPDIR/lib/"  # shared library available
+    if [[ -f $GAPROOT/config.log ]]; then
+        for word in $(grep '\-\-with-gmp=' "$GAPROOT/config.log"); do
+            pp="${word#--with-gmp=}"
+            if [[ "$word" != "$pp" ]]; then
+                case "$pp" in
+                    yes|no|system|builtin) ;;
+                    *) GMPDIR="$pp"; HAVE_GAPGMP="yes"; ;;
+                esac
+            fi
+        done
     fi
-    GMPLIB="$GMPLIB -L$GMPDIR/lib/"
 fi
 
 # link and compile flag for GMP library
@@ -83,28 +70,28 @@ GMPFLAG=
 if test -n "$HAVE_GAPGMP"; then
     HAVE_m32=
     if [[ -f "$GAPROOT/cnf/GAP-CFLAGS" ]]; then
-        # GAP 4.9 or higher
         HAVE_m32=$(grep 'm32' "$GAPROOT/cnf/GAP-CFLAGS")
-    else
-        # up to GAP 4.8
-        HAVE_m32=$(grep 'ABI_CFLAGS=-m32' "$GAPROOT/Makefile")
     fi
     if test -n "$HAVE_m32"; then
         GMPFLAG=-m32
     fi
 fi
 
-# C compiler GAP was built with; hack for GAP before 4.9
-if test -z "$GAP_CC"; then
-    eval $(grep CC= "$GAPROOT/Makefile" | head -1)
-    GAP_CC=$CC
+# GMP directory to hand over to CARAT configure
+WITHGMP=
+if test -n "$GMPDIR"; then
+    WITHGMP="--with-gmp=$GMPDIR"
 fi
 
-FLAGS="-O $GMPINC $GMPFLAG $GMPLIB"
+# extra CFLAGS required to use GAP's GMP library
+FLAGS=
+if test -n "$GMPFLAG"; then
+    FLAGS="-O2 -g $GMPFLAG"
+fi
 
 # write out everything, so that we can include it in Makefile
 echo "GAPROOT=$GAPROOT"      > config.carat
-echo "TOPDIR=$(pwd)/carat"  >> config.carat
 echo "ARCHDIR=$GAParch"     >> config.carat
 echo "CC=$GAP_CC"           >> config.carat
 echo "FLAGS=$FLAGS $CFLAGS" >> config.carat
+echo "WITHGMP=$WITHGMP"     >> config.carat

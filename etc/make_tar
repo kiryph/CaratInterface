@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PKGTAR=carat-2.3.tar
+PKGTAR=carat-2.3.1.tar
 
 # remove old archive
 rm -f $PKGTAR*
@@ -12,6 +12,7 @@ rm -f $PKGTAR*
 mkdir -p carat/doc carat/gap carat/htm carat/tst
 cd carat
   git clone https://github.com/lbfm-rwth/carat.git
+  (cd carat && ./autogen.sh)
   tar zcf carat.tgz --exclude=carat/.git carat 
   rm -rf carat
 cd ..

@@ -30,16 +30,17 @@ include config.carat
 ALL: carat qcatalog programs arch
 
 # fetch CARAT if necessary, or unpack it
-carat/Makefile:
+carat/configure:
 	if [ ! -d carat ]; then \
 	  if [ -f carat.tgz ]; then tar pzxf carat.tgz; \
 	  else git clone https://github.com/lbfm-rwth/carat.git; fi; \
 	fi
+	if [ ! -f carat/configure ]; then (cd carat && ./autogen.sh); fi
 	touch $@
-carat: carat/Makefile
+carat: carat/configure
 
 # unpack the qcatalog, by default without dimension 6
-carat/tables/qcatalog/TGROUPS.GAP: carat/Makefile
+carat/tables/qcatalog/TGROUPS.GAP: carat/configure
 	cd carat/tables; tar pzxf qcatalog.tar.gz --exclude=qcatalog/dim6
 	touch $@
 qcatalog: carat/tables/qcatalog/TGROUPS.GAP
@@ -51,15 +52,14 @@ carat/tables/qcatalog/dim6/BASIS: carat/tables/qcatalog/TGROUPS.GAP
 qcat6: carat/tables/qcatalog/dim6/BASIS
 
 # compile and link the CARAT binaries
-programs: config.carat carat/Makefile
-	cd carat; make TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
+programs: config.carat carat/configure
+	(cd carat && ./configure "$(WITHGMP)" CC="$(CC)" CFLAGS="$(FLAGS)" && make)
 	chmod -R a+rX .
 
-# make a suitable link, so that GAP can find the CARAT binaries
-arch: config.carat carat/Makefile
-	mkdir -p bin; chmod a+rx bin
-	rm -f "bin/$(ARCHDIR)"
-	ln -s "../carat/bin/`carat/bin/config.guess`-`basename $(CC)`" "bin/$(ARCHDIR)"
+# make suitable links, so that GAP can find the CARAT binaries
+arch: config.carat carat/configure
+	mkdir -p "bin/$(ARCHDIR)"; chmod -R a+rx bin
+	cd "bin/$(ARCHDIR)/"; ln -s ../../carat/bin/* . 
 
 # dynamic module for setting CARAT_DIR environment variable
 dynmod: src/setcaratdir.c

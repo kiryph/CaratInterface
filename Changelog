@@ -1,3 +1,8 @@
+Version 2.3.1
+
+  - adapted to new CARAT build system (using autotools)
+  - caught a further case in CaratReadMultiBravaisFile
+
 Version 2.3
 
   - switched to GitHub version of CARAT
