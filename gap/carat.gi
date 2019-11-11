@@ -326,7 +326,9 @@ CaratReadBravaisRecord := function( input, str )
     line := ReadLine( input );
     if line <> fail then
         pos := Position( line, '=' );
-        res.size := CaratNextNumber( line, pos + 1 );
+        if pos <> fail then
+            res.size := CaratNextNumber( line, pos + 1 );
+        fi;
     fi;
 
     return res;
