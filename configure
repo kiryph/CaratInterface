@@ -42,11 +42,9 @@ source "$GAPROOT/sysinfo.gap"
 
 # where is the GMP library?
 # if not set by this configure, get the GMP bundled with GAP
-HAVE_GAPGMP=
 if test -z "$GMPDIR"; then
     if [[ -d "$GAPROOT/extern/install/gmp" ]]; then
         GMPDIR="$GAPROOT/extern/install/gmp"
-        HAVE_GAPGMP="yes"
     fi
 fi
 # if still no GMP, try the one given as --with-gmp=<path> in GAP's configure
@@ -57,23 +55,10 @@ if test -z "$GMPDIR"; then
             if [[ "$word" != "$pp" ]]; then
                 case "$pp" in
                     yes|no|system|builtin) ;;
-                    *) GMPDIR="$pp"; HAVE_GAPGMP="yes"; ;;
+                    *) GMPDIR="$pp"; ;;
                 esac
             fi
         done
-    fi
-fi
-
-# link and compile flag for GMP library
-# we need the -m32 flag if we use GMP bundled with GAP and GAP is 32bit
-GMPFLAG=
-if test -n "$HAVE_GAPGMP"; then
-    HAVE_m32=
-    if [[ -f "$GAPROOT/cnf/GAP-CFLAGS" ]]; then
-        HAVE_m32=$(grep 'm32' "$GAPROOT/cnf/GAP-CFLAGS")
-    fi
-    if test -n "$HAVE_m32"; then
-        GMPFLAG=-m32
     fi
 fi
 
@@ -83,15 +68,9 @@ if test -n "$GMPDIR"; then
     WITHGMP="--with-gmp=$GMPDIR"
 fi
 
-# extra CFLAGS required to use GAP's GMP library
-FLAGS=
-if test -n "$GMPFLAG"; then
-    FLAGS="-O2 -g $GMPFLAG"
-fi
-
 # write out everything, so that we can include it in Makefile
 echo "GAPROOT=$GAPROOT"      > config.carat
 echo "ARCHDIR=$GAParch"     >> config.carat
 echo "CC=$GAP_CC"           >> config.carat
-echo "FLAGS=$FLAGS $CFLAGS" >> config.carat
+echo "CFLAGS=$GAP_CFLAGS"   >> config.carat
 echo "WITHGMP=$WITHGMP"     >> config.carat
