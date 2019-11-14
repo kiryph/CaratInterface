@@ -1,4 +1,5 @@
-TestDirectory( DirectoriesPackageLibrary( "carat", "tst" ),
+LoadPackage( "CaratInterface" );
+TestDirectory( DirectoriesPackageLibrary( "CaratInterface", "tst" ),
   rec( exitGAP     := true,
        testOptions := rec( compareFunction := "uptowhitespace") ) );
 
