@@ -1,21 +1,21 @@
 #############################################################################
 ##
-##  PackageInfo.g for Carat
+##  PackageInfo.g for CaratInterface
 ##
 
 SetPackageInfo( rec(
 
-PackageName := "Carat",
+PackageName := "CaratInterface",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
 Version := "2.3.1",
 
-Date := "24/10/2019", # dd/mm/yyyy format
+Date := "14/11/2019", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 ArchiveURL := Concatenation( 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/carat-", ~.Version ),
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/CaratInterface/CaratInterface-", ~.Version ),
 
 ArchiveFormats := ".tar.gz",
 
@@ -42,14 +42,14 @@ CommunicatedBy := "Herbert Pahlings (Aachen)",
 AcceptDate := "02/2000",
 
 README_URL := 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/README.carat",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/CaratInterface/README.CaratInterface",
 PackageInfoURL := 
-  "https://www.math.uni-bielefeld.de/~gaehler/gap/Carat/PackageInfo.g",
+  "https://www.math.uni-bielefeld.de/~gaehler/gap/CaratInterface/PackageInfo.g",
 
 AbstractHTML := 
 "This package provides <span class=\"pkgname\">GAP</span> interface \
 routines to some of the stand-alone programs of <a \
-href=\"https://wwwb.math.rwth-aachen.de/carat\">CARAT</a>, a package \
+href=\"https://github.com/lbfm-rwth/carat\">CARAT</a>, a package \
 for the computation with crystallographic groups. CARAT is to a large \
 extent complementary to the <span class=\"pkgname\">GAP</span> package \
 <span class=\"pkgname\">Cryst</span>. In particular, it provides \
@@ -69,7 +69,7 @@ IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
 SupportEmail := "gaehler@math.uni-bielefeld.de",
 
 PackageDoc  := rec(
-  BookName  := "Carat",
+  BookName  := "CaratInterface",
   ArchiveURLSubset := ["doc", "htm"],
   HTMLStart := "htm/chapters.htm",
   PDFFile   := "doc/manual.pdf",
@@ -86,16 +86,11 @@ Dependencies := rec(
 
 AvailabilityTest := function()
   local path;
-  # Carat is available only on UNIX (maybe no longer true)
-  #if not ARCH_IS_UNIX() then
-  #   LogPackageLoadingMessage(PACKAGE_INFO, "Carat is restricted to UNIX" );
-  #   return false;
-  #fi;  
   # test the existence of a compiled binary; since there are
   # so many, we do not test for all of them, hoping for the best
-  path := DirectoriesPackagePrograms( "carat" );
+  path := DirectoriesPackagePrograms( "CaratInterface" );
   if Filename( path, "Z_equiv" ) = fail then
-     LogPackageLoadingMessage(PACKAGE_WARNING, "Carat binaries must be compiled" );
+     LogPackageLoadingMessage(PACKAGE_WARNING, "CARAT binaries must be compiled" );
      return false;
   fi;
   return true;

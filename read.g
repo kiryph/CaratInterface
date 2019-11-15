@@ -5,16 +5,16 @@
 #Y  Copyright (C) 1999-2012,  Franz G"ahler, Mathematik, Bielefeld University
 ##
 
-# location of Carat binaries
-BindGlobal( "CARAT_BIN_DIR", DirectoriesPackagePrograms( "carat" ) );
+# location of CARAT binaries
+BindGlobal( "CARAT_BIN_DIR", DirectoriesPackagePrograms( "CaratInterface" ) );
 
 # directory for temporary files created by interface routines
 BindGlobal( "CARAT_TMP_DIR", DirectoryTemporary() );
 
-# low level Carat interface routines
-ReadPackage( "carat", "gap/carat.gi" );
+# low level CARAT interface routines
+ReadPackage( "CaratInterface", "gap/carat.gi" );
 
 # methods for functions declared in GAP library
-ReadPackage( "carat", "gap/methods.gi" );
+ReadPackage( "CaratInterface", "gap/methods.gi" );
 
 

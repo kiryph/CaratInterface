@@ -69,8 +69,8 @@ if test -n "$GMPDIR"; then
 fi
 
 # write out everything, so that we can include it in Makefile
-echo "GAPROOT=$GAPROOT"      > config.carat
-echo "ARCHDIR=$GAParch"     >> config.carat
-echo "CC=$GAP_CC"           >> config.carat
-echo "CFLAGS=$GAP_CFLAGS"   >> config.carat
-echo "WITHGMP=$WITHGMP"     >> config.carat
+echo "GAPROOT=$GAPROOT"             > config.carat
+echo "ARCHDIR=$GAParch"            >> config.carat
+echo "CC=$GAP_CC"                  >> config.carat
+echo "FLAGS=$GAP_CFLAGS $CFLAGS"   >> config.carat
+echo "WITHGMP=$WITHGMP"            >> config.carat

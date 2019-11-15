@@ -1,25 +1,25 @@
-[![Build Status](https://travis-ci.org/gap-packages/carat.svg?branch=master)](https://travis-ci.org/gap-packages/carat)
-[![Code Coverage](https://codecov.io/github/gap-packages/carat/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/carat)
+[![Build Status](https://travis-ci.org/gap-packages/CaratInterface.svg)](https://travis-ci.org/gap-packages/CaratInterface)
+[![Code Coverage](https://codecov.io/github/gap-packages/CaratInterface/coverage.svg)](https://codecov.io/gh/gap-packages/CaratInterface)
 
-The GAP package "Interface to CARAT", briefly called just Carat, 
-provides GAP interface routines to some of the stand-alone programs 
-in the package CARAT, developed by J. Opgenorth, W. Plesken, and 
-T. Schulz at Lehrstuhl B für Mathematik, RWTH Aachen. CARAT is a 
-package for the computation with crystallographic groups. It is 
-implemented in C, and thus needs to be compiled. It currently runs
-on Unix systems.
+The GAP package CaratInterface provides GAP interface routines to
+some of the stand-alone programs in the package CARAT, developed
+by J. Opgenorth, W. Plesken, and  T. Schulz at Lehrstuhl B für
+Mathematik, RWTH Aachen. CARAT is a package for the computation
+with crystallographic groups. It is implemented in C, and thus needs
+to be compiled. It currently runs on Unix systems and in Unix-like
+environments.
 
-CARAT is to a large extent complementary to the GAP package
-Cryst. In particular, it provides routines for the computation 
-of normalizers and conjugators of finite unimodular groups in GL(n,Z),
-and routines for the computation of Bravais groups, which are all 
-missing in Cryst.  Furthermore, it provides also a catalogue of 
-Bravais groups up to dimension 6. Cryst automatically loads Carat
-when it is available, and makes use of its functions where necessary. 
-The Carat package thereby extends the functionality of the package 
-Cryst considerably.
+CARAT is to a large extent complementary to the GAP package Cryst.
+In particular, it provides routines for the computation of
+normalizers and conjugators of finite unimodular groups in GL(n,Z),
+and routines for the computation of Bravais groups, which are all
+missing in Cryst. Furthermore, it provides also a catalogue of
+Bravais groups up to dimension 6. Cryst automatically loads
+CaratInterface when it is available, and makes use of its functions
+where necessary. The CaratInterface package together with CARAT
+thereby extends the functionality of the package Cryst considerably.
 
-The GAP interface routines to CARAT have been written by
+The CaratInterface routines have been written by
 
     Franz Gähler
     Fakultät für Mathematik 
@@ -31,7 +31,7 @@ The GAP interface routines to CARAT have been written by
 For bug reports, suggestions and other comments please use the issue
 tracker on the GitHub page of the package:
 
-https://github.com/gap-packages/carat/issues
+https://github.com/gap-packages/CaratInterface/issues
 
 Please note that CARAT itself is not part of this package, even though
 a copy is included in the distribution. All rights and responsibilities
@@ -41,10 +41,7 @@ GitHub repository
 https://github.com/lbfm-rwth/carat
 
 For bug reports, suggestions and comments regarding CARAT, please use
-the issue tracker on GitHub,
+the issue tracker on GitHub:
 
 https://github.com/lbfm-rwth/carat/issues
 
-or write e-mail to the CARAT maintainers at
-
-    carat@momo.math.rwth-aachen.de.

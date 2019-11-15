@@ -10,7 +10,7 @@ For a new release, the following needs to be done:
   doc/manual.tex
 
 - validate the PackageInfo record:
-  List( PackageInfo("carat"), ValidatePackageInfo );
+  List( PackageInfo("CaratInterface"), ValidatePackageInfo );
 
 - run install script
 

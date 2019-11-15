@@ -1,6 +1,7 @@
 #!/bin/sh
 
-PKGTAR=carat-2.3.1.tar
+DIR=CaratInterface
+PKGTAR=$DIR-2.3.1.tar
 
 # remove old archive
 rm -f $PKGTAR*
@@ -9,24 +10,27 @@ rm -f $PKGTAR*
 (cd ../doc; ./make_doc;)
 
 # make the package archive
-mkdir -p carat/doc carat/gap carat/htm carat/tst
-cd carat
+mkdir -p $DIR
+cd $DIR
+  mkdir -p doc gap htm tst src
   git clone https://github.com/lbfm-rwth/carat.git
   (cd carat && ./autogen.sh)
   tar zcf carat.tgz --exclude=carat/.git carat 
   rm -rf carat
 cd ..
-cp -p ../*.g ../README ../INSTALL ../Changelog ../GPL carat/
-cp -p ../Makefile ../configure carat/
+grep -v svg ../README.md > $DIR/README
+cp -p ../*.g ../INSTALL ../Changelog ../GPL $DIR/
+cp -p ../Makefile ../configure $DIR/
 cp -p ../doc/manual.bbl ../doc/manual.six ../doc/manual.lab ../doc/manual.toc \
-  ../doc/manual.mst ../doc/manual.pdf ../doc/*.tex ../doc/make_doc carat/doc/
-cp -p ../gap/*.g[di] carat/gap/
-cp -p ../htm/*.htm carat/htm/
-cp -p ../tst/*.g ../tst/*.tst  carat/tst/
-chmod -R a+rX carat 
-tar cvf $PKGTAR carat
+  ../doc/manual.mst ../doc/manual.pdf ../doc/*.tex ../doc/make_doc $DIR/doc/
+cp -p ../gap/*.g[di] $DIR/gap/
+cp -p ../htm/*.htm $DIR/htm/
+cp -p ../src/setcaratdir.c $DIR/src/
+cp -p ../tst/*.g ../tst/*.tst  $DIR/tst/
+chmod -R a+rX $DIR 
+tar cvf $PKGTAR $DIR
 chmod a+r $PKGTAR
 gzip $PKGTAR
 
 # cleanup
-rm -rf carat
+rm -rf $DIR

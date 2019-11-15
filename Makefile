@@ -53,7 +53,7 @@ qcat6: carat/tables/qcatalog/dim6/BASIS
 
 # compile and link the CARAT binaries
 programs: config.carat carat/configure
-	(cd carat && ./configure $(WITHGMP) CC="$(CC)" CFLAGS="$(CFLAGS)" && make)
+	(cd carat && ./configure $(WITHGMP) CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS)" && make)
 	chmod -R a+rX .
 
 # make suitable links, so that GAP can find the CARAT binaries
