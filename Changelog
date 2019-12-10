@@ -1,3 +1,7 @@
+Version 2.3.2
+
+  - fixed buffer overflow in Bravais_catalog
+
 Version 2.3.1
 
   - changed name to CaratInterface

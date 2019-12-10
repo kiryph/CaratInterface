@@ -9,9 +9,9 @@ PackageName := "CaratInterface",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.3.1",
+Version := "2.3.2",
 
-Date := "14/11/2019", # dd/mm/yyyy format
+Date := "10/12/2019", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 ArchiveURL := Concatenation( 
@@ -49,7 +49,7 @@ PackageInfoURL :=
 AbstractHTML := 
 "This package provides <span class=\"pkgname\">GAP</span> interface \
 routines to some of the stand-alone programs of <a \
-href=\"https://github.com/lbfm-rwth/carat\">CARAT</a>, a package \
+href=\"https://lbfm-rwth.github.io/carat\">CARAT</a>, a package \
 for the computation with crystallographic groups. CARAT is to a large \
 extent complementary to the <span class=\"pkgname\">GAP</span> package \
 <span class=\"pkgname\">Cryst</span>. In particular, it provides \
