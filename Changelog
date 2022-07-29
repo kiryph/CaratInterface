@@ -1,3 +1,7 @@
+Version 2.3.4
+
+  - fixed a bug in NormalizerInGLnZ
+
 Version 2.3.3
 
   - fixed conversion of documentation to HTML

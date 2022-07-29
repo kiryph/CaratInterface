@@ -9,9 +9,9 @@ PackageName := "CaratInterface",
 
 Subtitle := "Interface to CARAT, a crystallographic groups package",
 
-Version := "2.3.3",
+Version := "2.3.4",
 
-Date := "20/12/2019", # dd/mm/yyyy format
+Date := "29/07/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 ArchiveURL := Concatenation( 
@@ -78,9 +78,9 @@ PackageDoc  := rec(
 ),
 
 Dependencies := rec(
-  GAP := ">=4.9",
+  GAP := ">=4.11.1",
   NeededOtherPackages := [],
-  SuggestedOtherPackages := [ [ "Cryst", ">=4.1.17" ] ],
+  SuggestedOtherPackages := [ [ "Cryst", ">=4.1.24" ] ],
   ExternalConditions := []
 ),
 
