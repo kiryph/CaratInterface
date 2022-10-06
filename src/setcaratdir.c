@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "src/compiled.h"
+
+#include "gap_all.h"
    
 Obj FuncSET_CARAT_DIR( Obj self, Obj str ) {
   setenv("CARAT_DIR", CSTR_STRING(str), 1);
