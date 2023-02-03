@@ -107,11 +107,4 @@ DeclareGlobalFunction( "CaratHelp" );
 ##
 #F  set CARAT base directory
 ##
-caratpath := Filename( DirectoriesPackagePrograms( "CaratInterface" ),
-                       "setcaratdir.so" );
-if (not IsBound(SET_CARAT_DIR) and caratpath <> fail) then
-  LoadDynamicModule( caratpath );
-  caratpath := Filename( DirectoriesPackageLibrary( "CaratInterface", "carat" ), "" );
-  SET_CARAT_DIR( caratpath );
-fi;
-Unbind(caratpath);
+IO_setenv( "CARAT_DIR", Filename( DirectoriesPackageLibrary( "CaratInterface", "carat" ), "" ), true );
