@@ -60,7 +60,7 @@ end );
 ##
 #F  CaratBravaisInclusions( grp, opt ) . . . . .Bravais inclusions (internal)
 ##
-CaratBravaisInclusions := function( grp, opt )
+BindGlobal( "CaratBravaisInclusions", function( grp, opt )
 
     local grpfile, resfile, gen, data, args, output, grps, str, res, g, r;
 
@@ -95,7 +95,7 @@ CaratBravaisInclusions := function( grp, opt )
     od;
     return res;
 
-end;
+end );
 
 
 #############################################################################
@@ -132,7 +132,7 @@ end );
 ##
 #F  CaratNormalizerInGLnZFunc( G, opt ) . . . . .  normalizer of G in GL(n,Z)
 ##
-CaratNormalizerInGLnZFunc := function( grp, opt )
+BindGlobal( "CaratNormalizerInGLnZFunc", function( grp, opt )
 
     local grpfile, resfile, gen, data, output, res, args;
 
@@ -176,7 +176,7 @@ CaratNormalizerInGLnZFunc := function( grp, opt )
 
     return res;
 
-end;
+end );
 
 
 #############################################################################
@@ -405,7 +405,7 @@ InstallValue( CaratCrystalFamilies, [
 ##
 #M  CaratCrystalFamiliesFlat . . flat list of crystal family symbols in Carat
 ##
-CaratPermutedSymbols := function( symb )
+BindGlobal( "CaratPermutedSymbols", function( symb )
 
     local str, lst, pos, new, l, i;
 
@@ -432,7 +432,7 @@ CaratPermutedSymbols := function( symb )
 
     return new;
 
-end;
+end );
 
 InstallValue( CaratCrystalFamiliesFlat, Concatenation( 
     List( Concatenation( CaratCrystalFamilies ), CaratPermutedSymbols ) ) ); 
@@ -631,7 +631,7 @@ end );
 ##
 #F  CaratInvariantFormSpace( grp [, opts] ) . . . .  space of invariant forms 
 ##
-CaratInvariantFormSpace := function( arg )
+BindGlobal( "CaratInvariantFormSpace", function( arg )
 
     local grp, opts, optstring, gens, lat, ilat, tilat, 
           grpfile, resfile, forms;
@@ -705,4 +705,4 @@ CaratInvariantFormSpace := function( arg )
     fi;
     return forms;
 
-end;
+end );
