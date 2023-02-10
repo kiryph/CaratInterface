@@ -1,20 +1,21 @@
 INSTALLATION
 
 GAP is distributed together with a large number of packages, including
-this one. Carat is located inside the subdirectory pkg/carat/ of your GAP
-installation, and needs to be compiled. If you do not want to build all
-packages with the script BuildPackages.sh from GAP, you can build Carat
-alone by executing these commands inside the directory pkg/carat/:
+this one. CaratInterface is located inside the subdirectory pkg/caratinterface/
+of your GAP installation, and needs to be compiled. If you do not want to
+build all packages with the script BuildPackages.sh from GAP, you can build
+CaratInterface alone by executing these commands inside the directory
+pkg/caratinterface/:
 
     ./configure <path-to-GAP-root>
     make
 
 The configure script optionally takes the path to the root directory of 
 your GAP installation as argument. The default ../.. should usually 
-work, but if you have unpacked Carat to a location like ~/.gap/pkg/carat/, 
-you need to explicitly give the path to the GAP root directory as argument.
-The result of configure is written to the file config.carat, which can be
-inspected if something goes wrong.
+work, but if you have unpacked CaratInterace to a location like
+~/.gap/pkg/caratinterface/, you need to explicitly give the path to
+the GAP root directory as argument. The result of configure is written
+to the file config.carat, which can be inspected if something goes wrong.
 
 If GAP was configured to use a specific GMP library, or the GMP library
 bundled with GAP, then CARAT will try to use that same GMP library.
