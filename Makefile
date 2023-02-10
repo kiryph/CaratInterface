@@ -62,13 +62,9 @@ arch: config.carat carat/configure
 	rm -rf "bin/$(ARCHDIR)"
 	ln -sf ../carat/bin "bin/$(ARCHDIR)"
 
-# dynamic module for setting CARAT_DIR environment variable
-dynmod: src/setcaratdir.c
-	$(GAPROOT)/gac -d -o bin/$(ARCHDIR)/setcaratdir.so $<
-
 # clean up everything
 clean: config.carat
 	if [ -d "carat/" ]; then cd carat; make clean; fi
 	rm -rf "bin/$(ARCHDIR)"
 
-.PHONY: all arch clean arch carat dynmod programs qcatalog qcat6
+.PHONY: all arch clean arch carat programs qcatalog qcat6
