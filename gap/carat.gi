@@ -27,7 +27,7 @@ end );
 ##
 #F  CaratReadLine( input )  . . . . . . . . . . read line and discard comment
 ##
-CaratReadLine := function( input )
+BindGlobal( "CaratReadLine", function( input )
     local str, pos;
     str := ReadLine( input );
     if str = fail then
@@ -39,7 +39,7 @@ CaratReadLine := function( input )
     else
         return str;
     fi;
-end;
+end );
 
 
 #############################################################################
@@ -50,7 +50,7 @@ end;
 # this is a hack needed in CaratNextNumber, CaratReadNumbers
 CaratReadPosition := 1;
 
-CaratNextNumber := function( str, start )
+BindGlobal( "CaratNextNumber", function( str, start )
 
     local len, pos1, pos2;
 
@@ -73,14 +73,14 @@ CaratNextNumber := function( str, start )
 
     return Int( str{[pos1..pos2-1]} );
 
-end;
+end );
  
 
 #############################################################################
 ##
 #F  CaratReadNumbers( input, ntot )  . . . . . . read ntot numbers from input
 ##
-CaratReadNumbers := function( input, ntot )
+BindGlobal( "CaratReadNumbers", function( input, ntot )
 
     local res, nread, str, n;
 
@@ -100,25 +100,25 @@ CaratReadNumbers := function( input, ntot )
     od;
     return res;
 
-end; 
+end ); 
 
 
 #############################################################################
 ##
 #F  CaratReadMatrixScalar( input, dim ) . . . . read scalar matrix from input
 ##
-CaratReadMatrixScalar := function( input, dim )
+BindGlobal( "CaratReadMatrixScalar", function( input, dim )
     local lst;
     lst := CaratReadNumbers( input, 1 );
     return lst[1] * IdentityMat( dim );
-end;
+end );
 
 
 #############################################################################
 ##
 #F  CaratReadMatrixDiagonal( input, dim ) . . read diagonal matrix from input
 ##
-CaratReadMatrixDiagonal := function( input, dim )
+BindGlobal( "CaratReadMatrixDiagonal", function( input, dim )
     local lst, mat, i;
     lst := CaratReadNumbers( input, dim );
     mat := List( [1..dim], i -> List( [1..dim], j -> 0 ) );
@@ -126,14 +126,14 @@ CaratReadMatrixDiagonal := function( input, dim )
         mat[i][i] := lst[i];
     od;
     return mat;
-end;
+end );
 
 
 #############################################################################
 ##
 #F  CaratReadMatrixSymmetric( input, dim ) . read symmetric matrix from input
 ##
-CaratReadMatrixSymmetric := function( input, dim )
+BindGlobal( "CaratReadMatrixSymmetric", function( input, dim )
     local lst, mat, pos, i, j;
     lst := CaratReadNumbers( input, dim*(dim+1)/2 );
     mat := [];
@@ -148,25 +148,25 @@ CaratReadMatrixSymmetric := function( input, dim )
         od;
     od;
     return mat;
-end;
+end );
 
 
 #############################################################################
 ##
 #F  CaratReadMatrixFull( input, n, m ) . . . . . . read nxm matrix from input
 ##
-CaratReadMatrixFull := function( input, n, m )
+BindGlobal( "CaratReadMatrixFull", function( input, n, m )
     local lst;
     lst := CaratReadNumbers( input, n*m );
     return List( [1..n], i -> lst{[ (i-1)*m+1 .. i*m ]});
-end;
+end );
 
 
 #############################################################################
 ##
 #F  CaratReadMatrix( input, str )  . . read matrix with header str from input
 ##
-CaratReadMatrix := function( input, str )
+BindGlobal( "CaratReadMatrix", function( input, str )
 
     local n, den, pos, m;
 
@@ -206,14 +206,14 @@ CaratReadMatrix := function( input, str )
     # full square matrix
     return CaratReadMatrixFull( input, n, n ) / den;
 
-end;
+end );
 
 
 #############################################################################
 ##
 #F  CaratReadMatrices( input, n ) . .. . . . . . . read n matrices from input
 ##
-CaratReadMatrices := function( input, n )
+BindGlobal( "CaratReadMatrices", function( input, n )
 
     local res, i, str;
 
@@ -224,7 +224,7 @@ CaratReadMatrices := function( input, n )
     od;
     return res;
 
-end;        
+end );
 
 
 #############################################################################
@@ -272,7 +272,7 @@ end );
 ##
 #F  CaratReadBravaisRecord( input, str )  . . . . . read Carat Bravais record
 ##
-CaratReadBravaisRecord := function( input, str )
+BindGlobal( "CaratReadBravaisRecord", function( input, str )
 
     local res, pos, n, line;
 
@@ -333,7 +333,7 @@ CaratReadBravaisRecord := function( input, str )
 
     return res;
 
-end;
+end );
 
 
 #############################################################################
@@ -388,7 +388,7 @@ end );
 ##
 #F  CaratWriteMatrix( output, mat )  . . . . . . write Carat matrix to stream
 ##
-CaratWriteMatrix := function( output, mat )
+BindGlobal( "CaratWriteMatrix", function( output, mat )
 
     local d, str, i, j;
 
@@ -411,7 +411,7 @@ CaratWriteMatrix := function( output, mat )
         WriteLine( output, str );
     od;
 
-end;
+end );
 
 
 #############################################################################
@@ -445,7 +445,7 @@ end );
 ##
 #F  CaratFactorString( n )  . . . . factorization of n in Carat string format
 ##
-CaratFactorString := function( n )
+BindGlobal( "CaratFactorString", function( n )
 
     local fac, set, ExpStr, str, p;
 
@@ -466,7 +466,7 @@ CaratFactorString := function( n )
 
     return str;
 
-end;
+end );
 
 
 #############################################################################
@@ -577,7 +577,7 @@ end );
 ##
 #F  CaratStringToWordList( string )  . . . . . .cut string into list of words
 ##
-CaratStringToWordList := function( string )
+BindGlobal( "CaratStringToWordList", function( string )
 
     local seps, lst, str, pos1, pos2;
 
@@ -597,7 +597,7 @@ CaratStringToWordList := function( string )
     od;
     return lst;
 
-end;
+end );
 
 
 #############################################################################
