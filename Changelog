@@ -1,3 +1,8 @@
+Version 2.3.5
+
+  - removed C source no longer needed (use IO package instead)
+  - fixed a use-after-free in CARAT
+
 Version 2.3.4
 
   - fixed a bug in NormalizerInGLnZ
