@@ -278,6 +278,10 @@ BindGlobal( "CaratReadBravaisRecord", function( input, str )
 
     res := rec();
 
+    if Position( str, '#' ) = fail then
+
+    fi;
+
     # read group generators
     pos := Position( str, 'g' );
 
@@ -621,8 +625,14 @@ InstallGlobalFunction( CaratCommand, function( command, args, outfile )
     CloseStream( output );
 
     # did it work?
-    if err = 2 and args <> "-h" then   # we used wrong arguments
-        CaratShowFile( outfile );      # contains usage advice
+    if err > 0 then
+        if err = 2 and args <> "-h" then   # we used wrong arguments
+            CaratShowFile( outfile );      # contains usage advice
+        else
+            CaratShowFile( outfile );
+            Error( Concatenation( "Carat program ", command,
+                     " failed with error code ", String(err), " and the above output" ) );
+        fi;
     fi;
     if err < 0 and args <> "-h" then
         Error( Concatenation( "Carat program ", command,
@@ -639,7 +649,3 @@ end );
 InstallGlobalFunction( CaratHelp, function( command )
     CaratCommand( command, "-h", "*stdout*" );
 end );
-
-
-
-
